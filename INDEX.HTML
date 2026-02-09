@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kacy Culpepper | Email Marketing Specialist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Baskerville:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --bg: #fafafa;
+            --text: #1a1a1a;
+            --accent: #555;
+            --link: #c8102e; /* Ken Garff Red */
+            --card: #fff;
+            --border: #e5e5e5;
+            --shadow: 0 4px 20px rgba(0,0,0,.06);
+            --terminal-bg: #0d1117;
+            --terminal-text: #00ff9f;
+            --gold: #ffd700;
+            --off-gray: #2a2a2a;
+            --cement: #e0e0e0;
+            --burgundy: #800020;
+        }
+
+        body { background: var(--bg); color: var(--text); font-family: 'Inter',sans-serif; line-height: 1.75; margin: 0; }
+        h1,h2,h3 { font-family: 'Libre Baskerville',serif; font-weight: 700; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 48px 28px; }
+        
+        /* Navigation */
+        nav { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 52px; font-size: .97rem; justify-content: flex-start; }
+        nav a { color: var(--accent); text-decoration: none; padding: 5px 10px; border-radius: 4px; transition: background 0.2s; }
+        nav a:hover { color: var(--link); background: rgba(0,0,0,0.03); }
+
+        header { margin-bottom: 40px; }
+        header h1 { font-size: 3.2rem; margin: 0 0 12px; letter-spacing: -0.5px; line-height: 1.1; }
+        .subtitle { font-size: 1.4rem; color: var(--accent); margin-bottom: 28px; }
+        
+        .btn { padding: 13px 30px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all .3s; text-decoration: none; display: inline-block;}
+        .btn-primary { background: var(--link); color: #fff; border: none;}
+        .btn-primary:hover { background: #a00d25; transform: translateY(-1px); box-shadow: 0 5px 15px rgba(200, 16, 46, 0.2); }
+
+        /* --- FLEX GRID SYSTEM --- */
+        .flex-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow);
+            transition: transform .3s ease, box-shadow .3s ease;
+            flex: 1 1 300px; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+
+        /* Size Modifiers */
+        .card-wide { flex: 2 1 600px; }
+        .card-full { flex: 1 1 100%; }
+
+        /* Card Styles */
+        h2 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: .15em; color: var(--accent); margin-bottom: 20px; font-weight: 600; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; display: inline-block; }
+        
+        .gray-bento { background: var(--off-gray); border: 1px solid #444; color: #eee; }
+        .gray-bento h2 { color: var(--cement); border-color: #555; }
+        
+        .terminal-card { 
+            background: var(--terminal-bg); 
+            padding: 0; 
+            border: none; 
+            overflow: hidden; 
+            min-height: 200px;
+        }
+
+        /* Progress Bars */
+        .skill-row { margin-bottom: 15px; }
+        .skill-label { display: flex; justify-content: space-between; margin-bottom: 5px; font-weight: 500; font-size: 0.95rem; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--link); border-radius: 4px; }
+
+        /* Terminal */
+        .terminal {
+            font-family: 'IBM Plex Mono',monospace;
+            font-size: 1.2rem;
+            color: var(--terminal-text);
+            padding: 32px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .terminal::after { content: '|'; animation: blink 1s step-end infinite; color: var(--terminal-text); }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Dynamic Text */
+        .dynamic-text {
+            font-family: 'IBM Plex Mono',monospace;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Tech Grid */
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+        .tech-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.95rem; }
+        .tech-item i { color: var(--link); width: 20px; text-align: center; }
+
+        /* Clock */
+        .fixed-clock {
+            position: fixed; top: 20px; right: 24px;
+            background: rgba(255,255,255,.9); backdrop-filter: blur(5px);
+            border: 1px solid var(--border); border-radius: 8px;
+            padding: 8px 14px; font-family: 'IBM Plex Mono', monospace; font-weight: 600;
+            z-index: 999;
+        }
+
+        /* --- IMAGE CAROUSEL STYLES --- */
+        .carousel-card {
+            padding: 0 !important;
+            overflow: hidden;
+            position: relative;
+            background: #fff; 
+            /* Added min-height so header doesn't get squashed */
+            min-height: 250px; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* The Header inside the carousel card */
+        .trusted-header {
+            position: absolute;
+            top: 20px;
+            left: 32px;
+            z-index: 10;
+            background: rgba(255,255,255,0.9);
+            padding-right: 10px;
+            border-radius: 0 0 8px 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 400%; /* 4 images = 400% width */
+            height: 100%;
+            animation: slide 16s infinite; /* 4s per image x 4 */
+        }
+
+        .carousel-slide {
+            width: 25%; /* Each slide is 1/4 of the track */
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px 40px 40px; /* Top padding clears the header */
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            display: block;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(200, 16, 46, 0.9); /* Ken Garff Red Overlay */
+            color: white;
+            padding: 10px 16px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        /* Slide Animation: 4 Steps */
+        @keyframes slide {
+            0%, 20% { transform: translateX(0); }
+            25%, 45% { transform: translateX(-25%); }
+            50%, 70% { transform: translateX(-50%); }
+            75%, 95% { transform: translateX(-75%); }
+            100% { transform: translateX(0); } /* Reset */
+        }
+
+        /* --- PROJECTS LAYOUT --- */
+        .projects-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 100px; 
+            margin-top: 40px;
+        }
+
+        .proj-item {
+            display: flex;
+            align-items: center; 
+            gap: 60px; 
+        }
+
+        .proj-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .proj-preview { 
+            position: relative; 
+            flex: 0 0 600px;
+            width: 600px;
+            height: 600px; 
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+            overflow: hidden;
+        }
+        .proj-preview iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+        
+        .proj-info { 
+            flex: 1; 
+            min-width: 300px;
+        }
+        
+        .proj-info h3 { 
+            margin: 0 0 16px; 
+            font-size: 1.8rem; 
+            color: var(--burgundy); 
+            line-height: 1.2;
+        }
+        
+        .proj-info p { 
+            font-size: 1.1rem; 
+            color: #444; 
+            margin-bottom: 24px; 
+            line-height: 1.8; 
+        }
+        
+        .proj-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .tag {
+            background: #fff;
+            border: 1px solid #ddd;
+            color: #555;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .proj-link { 
+            color: #fff; 
+            background: var(--link);
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1rem; 
+            font-weight: 600; 
+            text-decoration: none; 
+            display: inline-block;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(200, 16, 46, 0.2);
+        }
+        .proj-link:hover { background: #a00d25; transform: translateY(-2px); }
+
+        .source-link a { color: var(--gold); opacity: 0.7; font-size: 0.8rem; text-decoration: none; }
+
+        @media (max-width: 1024px) {
+            .proj-item, .proj-item:nth-child(even) {
+                flex-direction: column; 
+                gap: 30px;
+            }
+            .proj-preview {
+                width: 100%; 
+                flex: none;
+                max-width: 600px;
+                height: 500px;
+            }
+            .proj-info { text-align: left; width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .card-wide, .card-full { flex: 1 1 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-clock" id="fixed-clock">--:--:--</div>
+
+    <div class="container">
+        <nav>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <header>
+            <h1>Kacy Edward Culpepper</h1>
+            <p class="subtitle">Email Marketing Specialist & Technical Creative</p>
+            <div class="cta-group">
+                <a href="https://docs.google.com/document/d/16RSZtZuLAhohoX6JN_oaQpijdfaV1biIAhZfVc6lK8Q/export?format=pdf" class="btn btn-primary" download>Download C/V</a>
+            </div>
+        </header>
+
+        <div class="flex-grid">
+
+            <div id="about" class="card card-full">
+                <h2 style="color:var(--link); border-color:var(--link);">// About</h2>
+                <div style="column-count: 1; @media(min-width: 800px){ column-count: 2; column-gap: 60px; }">
+                    <p style="margin-top:0;">I am a creative technologist with over 10 years of experience intersecting <strong>Email Marketing</strong>, <strong>Web Development</strong>, and <strong>Process Automation</strong>. I specialize in building "bulletproof" email templates that render perfectly across clients while designing automated customer journeys that drive engagement.</p>
+                    <p>My background is deeply rooted in the technical side of marketing. At CHG Healthcare, I led the migration to responsive design and managed complex Salesforce marketing initiatives. I thrive in environments that require both creative eyes and technical hands—troubleshooting broken HTML in Outlook one moment and optimizing A/B test logic the next.</p>
+                    <p><strong>Current Focus:</strong> I am currently managing Web Support and Ad Operations for <em>Altaracks</em> (Contract), where I simplify WordPress setups and manage digital ad campaigns. Simultaneously, I maintain my technical edge through infrastructure projects—installing commercial data cabling and network systems.</p>
+                    <p>I am looking to bring this mix of "blue-collar" work ethic and "white-collar" marketing strategy to the <strong>Ken Garff Automotive Group</strong>.</p>
+                </div>
+            </div>
+
+            <div id="experience" class="card card-wide">
+                <h2>// Relevant Experience</h2>
+                <div style="display: grid; gap: 24px;">
+                    <div>
+                        <div style="color:var(--accent);font-size:0.85rem; font-weight:600;">2026 - Present (Contract)</div>
+                        <strong style="font-size:1.1rem;">Web Support & Ad Ops | Altaracks</strong>
+                        <div style="font-size:0.95rem; color:#666;">Managing WordPress architecture, ad creatives, and lead gen optimization.</div>
+                    </div>
+                    <div>
+                        <div style="color:var(--accent);font-size:0.85rem; font-weight:600;">2024 - Present</div>
+                        <strong style="font-size:1.1rem;">Technical Infrastructure Specialist</strong>
+                        <div style="font-size:0.95rem; color:#666;">Data cabling & Network logic. Sharpening troubleshooting & process discipline.</div>
+                    </div>
+                    <div>
+                        <div style="color:var(--accent);font-size:0.85rem; font-weight:600;">2023 Artisan Talent</div>
+                        <strong style="font-size:1.1rem;">Email Automation Specialist</strong>
+                        <div style="font-size:0.95rem; color:#666;">Reduced manual workload by 60% via CSV automation & templates.</div>
+                    </div>
+                    <div>
+                        <div style="color:var(--accent);font-size:0.85rem; font-weight:600;">2014–2018 CHG Healthcare</div>
+                        <strong style="font-size:1.1rem;">Email &amp; Front-End Developer</strong>
+                        <div style="font-size:0.95rem; color:#666;">Led responsive migration & Salesforce ESP integration.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="skills" class="card">
+                <h2>// Skills</h2>
+                <div class="skill-row">
+                    <div class="skill-label"><span>HTML / CSS (Email)</span><span>98%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:98%"></div></div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-label"><span>AMPscript / Liquid</span><span>92%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:92%"></div></div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-label"><span>CRM & List Hygiene</span><span>88%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:88%"></div></div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-label"><span>Automation Logic</span><span>95%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-label"><span>Adobe CC</span><span>85%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+                </div>
+            </div>
+
+            <div class="card card-wide terminal-card">
+                <div class="terminal" id="terminal"><span id="typed"></span></div>
+            </div>
+
+            <div class="card gray-bento">
+                <h2>// Industry Insights</h2>
+                <div class="dynamic-text" id="insights-text"></div>
+            </div>
+
+            <div class="card carousel-card">
+                <div class="trusted-header">
+                    <h2>// Trusted By</h2>
+                </div>
+                
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <img src="data:image/png;base64,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" alt="CHG Healthcare">
+                        <div class="carousel-caption">CHG Healthcare</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKCfSx5kYCJA8ltanI_c8r3sR5By4sPPMXUQ&s" alt="Arenawins">
+                        <div class="carousel-caption">Arena Wins</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="data:image/png;base64,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" alt="Simon Malls">
+                        <div class="carousel-caption">Simon Property Group</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://regional.tsid.org/wp-content/uploads/sites/18/2023/04/Sorenson.jpeg" alt="Sorenson">
+                        <div class="carousel-caption">Sorenson Communications</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-full">
+                <h2>// Technology Stack</h2>
+                <div class="tech-grid">
+                    <div>
+                        <h3 style="font-size:0.9rem; color:var(--accent); margin-bottom:10px;">Email Core</h3>
+                        <div class="tech-item"><i class="fa-solid fa-envelope"></i> MJML / HTML5</div>
+                        <div class="tech-item"><i class="fa-solid fa-file-code"></i> AMPscript</div>
+                        <div class="tech-item"><i class="fa-solid fa-vial"></i> Litmus Testing</div>
+                    </div>
+                    <div>
+                        <h3 style="font-size:0.9rem; color:var(--accent); margin-bottom:10px;">Platform</h3>
+                        <div class="tech-item"><i class="fa-brands fa-salesforce"></i> Marketing Cloud</div>
+                        <div class="tech-item"><i class="fa-brands fa-wordpress"></i> WordPress / PHP</div>
+                        <div class="tech-item"><i class="fa-solid fa-paintbrush"></i> Photoshop</div>
+                    </div>
+                    <div>
+                        <h3 style="font-size:0.9rem; color:var(--accent); margin-bottom:10px;">Logic</h3>
+                        <div class="tech-item"><i class="fa-solid fa-robot"></i> Tasker / AutoSheets</div>
+                        <div class="tech-item"><i class="fa-solid fa-database"></i> SQL / MySQL</div>
+                        <div class="tech-item"><i class="fa-solid fa-bolt"></i> API Integrations</div>
+                    </div>
+                    <div>
+                        <h3 style="font-size:0.9rem; color:var(--accent); margin-bottom:10px;">Env</h3>
+                        <div class="tech-item"><i class="fa-brands fa-linux"></i> Linux / Bash</div>
+                        <div class="tech-item"><i class="fa-brands fa-git-alt"></i> Git</div>
+                        <div class="tech-item"><i class="fa-solid fa-users"></i> Agile Workflow</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="projects" style="margin-top: 100px;">
+            <h2 style="font-size: 2rem; color: var(--accent); border-bottom: none; margin-bottom: 20px;">// Selected Case Studies</h2>
+            
+            <div class="projects-wrapper">
+                
+                <div class="proj-item">
+                    <div class="proj-preview">
+                        <iframe src="https://codepen.io/pepperinsalt/embed/RwLoBZB?default-tab=result" loading="lazy"></iframe>
+                    </div>
+                    <div class="proj-info">
+                        <h3>Maizzle Responsive System</h3>
+                        <div class="proj-tags">
+                            <span class="tag">Maizzle</span>
+                            <span class="tag">Tailwind CSS</span>
+                            <span class="tag">Outlook 2019</span>
+                        </div>
+                        <p>
+                            A component-based email architecture built using Maizzle. This project solves the common "spaghetti code" issue in legacy email HTML by using utility classes that compile down to inline CSS. It specifically targets Outlook VML compatibility for background images and ensures bulletproof rendering in Dark Mode environments. This approach allows for rapid iteration of marketing campaigns without breaking layout consistency.
+                        </p>
+                        <a href="https://codepen.io/pepperinsalt/live/RwLoBZB" target="_blank" class="proj-link">View Live Build</a>
+                    </div>
+                </div>
+
+                <div class="proj-item">
+                    <div class="proj-preview">
+                        <iframe src="https://codepen.io/pepperinsalt/embed/mdBOjBz?default-tab=result" loading="lazy"></iframe>
+                    </div>
+                    <div class="proj-info">
+                        <h3>Conversion-Focused Newsletter</h3>
+                        <div class="proj-tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">Typography</span>
+                            <span class="tag">CTA Optimization</span>
+                        </div>
+                        <p>
+                            Designed with conversion in mind, this template utilizes a clean, single-column layout for mobile-first readability. Key features include a prominent "Quote Header" for social proof and ghost-button CTAs that degrade gracefully in clients that block images. The code structure is optimized for high deliverability, stripping out unnecessary bloat that triggers spam filters.
+                        </p>
+                        <a href="https://codepen.io/pepperinsalt/live/mdBOjBz" target="_blank" class="proj-link">View Live Build</a>
+                    </div>
+                </div>
+
+                <div class="proj-item">
+                    <div class="proj-preview">
+                        <iframe src="https://codepen.io/pepperinsalt/embed/wvroxqZ?default-tab=result" loading="lazy"></iframe>
+                    </div>
+                    <div class="proj-info">
+                        <h3>CompHealth Enterprise System</h3>
+                        <div class="proj-tags">
+                            <span class="tag">SOAP API</span>
+                            <span class="tag">Live Job Data</span>
+                            <span class="tag">Dynamic Content</span>
+                        </div>
+                        <p>
+                            This enterprise-grade system utilized <strong>complex SOAP scripting</strong> to interface directly with the Jobs API, fetching real-time vacancy data. The logic automatically filtered and populated job listings matching the specific specialty of the recipient (e.g., Locum Tenens vs. Permanent). The architecture supported over <strong>20 distinct design variations</strong>—dynamically swapping headers, footers, and brand colors—allowing a single codebase to serve multiple sub-brands.
+                        </p>
+                        <a href="https://codepen.io/pepperinsalt/live/wvroxqZ" target="_blank" class="proj-link">View Live Build</a>
+                    </div>
+                </div>
+
+                <div class="proj-item">
+                    <div class="proj-preview">
+                        <iframe src="https://codepen.io/pepperinsalt/embed/abYMGOo?default-tab=result" loading="lazy"></iframe>
+                    </div>
+                    <div class="proj-info">
+                        <h3>Sorenson Bilingual Campaign</h3>
+                        <div class="proj-tags">
+                            <span class="tag">Accessibility</span>
+                            <span class="tag">Localization</span>
+                            <span class="tag">Multi-Column</span>
+                        </div>
+                        <p>
+                            A specialized campaign focusing on accessibility and localization. This template handles English/Spanish text expansion gracefully without breaking the layout. It features a 3-column desktop grid that stacks perfectly to a single column on mobile using media queries, ensuring that the call-to-action remains above the fold on all devices.
+                        </p>
+                        <a href="https://codepen.io/pepperinsalt/live/abYMGOo" target="_blank" class="proj-link">View Live Build</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="contact" class="card" style="margin-top:100px; text-align:center; justify-content:center; align-items: center; width:100%; border:none; box-shadow:none; background:transparent;">
+            <h2 style="border-bottom:none;">// Contact</h2>
+            <div style="font-size:1.5rem;">
+                <div>pepperinsalt@gmail.com</div>
+                <div style="margin-top:10px;">(385) 309-3241</div>
+                <div style="margin-top:10px; font-size:1rem; color:#888;">Murray, UT</div>
+            </div>
+        </div>
+
+        <footer style="text-align:center; margin-top:60px; color:#888; font-size:.9rem;">
+            © 2026 Kacy Edward Culpepper
+        </footer>
+    </div>
+
+    <script>
+        // Clock
+        function updateFixedClock() {
+            document.getElementById('fixed-clock').textContent = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+        }
+        setInterval(updateFixedClock,1000);
+        updateFixedClock();
+
+        // Typewriter
+        const prefix = "Building emails that don't break in ";
+        const clients = ["Outlook 2019", "Gmail", "SF Marketing Cloud", "Outlook 365", "iPhone Mail", "Dark Mode", "Samsung Email", "Thunderbird"];
+        let charIndex = 0, clientIndex = 0;
+        const typed = document.getElementById('typed');
+
+        function type() {
+            if (charIndex < prefix.length) {
+                typed.textContent += prefix[charIndex++];
+                setTimeout(type,60);
+            } else cycleClient();
+        }
+
+        function cycleClient() {
+            const el = document.createElement('span');
+            el.textContent = clients[clientIndex];
+            typed.appendChild(el);
+            setTimeout(() => {
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    el.remove();
+                    clientIndex = (clientIndex + 1) % clients.length;
+                    cycleClient();
+                },600);
+            },2200);
+        }
+        type();
+
+        // Merged "Industry Insights" Rotator
+        const insights = [
+            "<strong>Tip:</strong> Always include a preheader to boost open rates by up to 7%.",
+            "<strong>Stat:</strong> Automated welcome series drive 320% more revenue than broadcast emails.<br><span class='source-link'>[Hubspot]</span>",
+            "<strong>Tip:</strong> Test emails in Dark Mode; pure black (#000) often causes contrast issues.",
+            "<strong>Stat:</strong> Mobile clients account for 41.9% of all email opens.<br><span class='source-link'>[Litmus]</span>",
+            "<strong>Tip:</strong> Keep subject lines under 50 characters for mobile optimization.",
+            "<strong>Stat:</strong> Interactive emails increase click-to-open rates by 73%."
+        ];
+
+        function rotateInsights(id, array, interval) {
+            let index = 0;
+            const el = document.getElementById(id);
+            if(!el) return;
+            el.innerHTML = array[0];
+            setInterval(() => {
+                el.style.opacity = 0;
+                setTimeout(() => {
+                    index = (index + 1) % array.length;
+                    el.innerHTML = array[index];
+                    el.style.opacity = 1;
+                }, 400);
+            }, interval);
+        }
+        
+        // Add fade transition to text
+        document.querySelectorAll('.dynamic-text').forEach(el => el.style.transition = 'opacity 0.4s');
+
+        rotateInsights('insights-text', insights, 7000);
+    </script>
+</body>
+</html>
